@@ -69,9 +69,9 @@ def pred(age, rmt, dep, stress, anx):
     predicted_depression_1 = depression1(age, rmt, dep, stress, anx)
     predicted_stress_1 = stress1(age, rmt, dep, stress, anx)
     predicted_anxiety_1 = anx1(age, rmt, dep, stress, anx)
-    finald = [dep,predicted_depression_1]
-    finals = [stress,predicted_stress_1]
-    finala = [anx,predicted_anxiety_1]
+    finald = [dep, predicted_depression_1]
+    finals = [stress, predicted_stress_1]
+    finala = [anx, predicted_anxiety_1]
     no_of_sessions = 10
     ans = {'RXD': finald, 'RXS': finals, 'RXA': finala,
            'finald': predicted_depression_1, 'finals': predicted_stress_1, 'finala': predicted_anxiety_1, 'no_of_session': no_of_sessions}
@@ -92,8 +92,11 @@ def pred(age, rmt, dep, stress, anx):
         ans['finals'] = predicted_stress_2
         ans['finala'] = predicted_anxiety_2
         ans['no_of_session'] = no_of_sessions
-    ans['Total_Score(MADRS)'] = abs(totalscore(
-        age, rmt, dep, stress, anx, predicted_depression_2, predicted_stress_2, predicted_anxiety_2))
+        ans['MADRS'] = abs(totalscore(age, rmt, dep, stress, anx,
+                           predicted_depression_2, predicted_stress_2, predicted_anxiety_2))
+    else:
+        ans['MADRS'] = abs(totalscore(age, rmt, dep, stress, anx,
+                           predicted_depression_1, predicted_stress_1, predicted_anxiety_1))
     return ans
 
 
