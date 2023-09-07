@@ -3,7 +3,6 @@ import numpy as np
 from keras.models import load_model
 from flask_cors import CORS
 import os
-import random
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 app = Flask(__name__)
 CORS(app)
@@ -27,7 +26,7 @@ def depression2(age, rmt, dep, stress, anx, dep1):
     x_in = np.array([[rmt, age, dep, stress, anx, dep1]])
     pred = loaded_modeld2.predict(x_in)
     processed_pred = int(pred[0][0])
-    return processed_pred
+    return processed_predsk 
 
 def stress1(age, rmt, dep, stress, anx):
     x_in = np.array([[rmt, age, dep, stress, anx]])
