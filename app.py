@@ -23,13 +23,11 @@ def depression1(age, rmt, dep, stress, anx):
     processed_pred = int(pred[0][0])
     return processed_pred
 
-
 def depression2(age, rmt, dep, stress, anx, dep1):
     x_in = np.array([[rmt, age, dep, stress, anx, dep1]])
     pred = loaded_modeld2.predict(x_in)
     processed_pred = int(pred[0][0])
     return processed_pred
-
 
 def stress1(age, rmt, dep, stress, anx):
     x_in = np.array([[rmt, age, dep, stress, anx]])
@@ -37,13 +35,11 @@ def stress1(age, rmt, dep, stress, anx):
     processed_pred = int(pred[0][0])
     return processed_pred
 
-
 def stress2(age, rmt, dep, stress, anx, stress1):
     x_in = np.array([[rmt, age, dep, stress, anx, stress1]])
     pred = loaded_models2.predict(x_in)
     processed_pred = int(pred[0][0])
     return processed_pred
-
 
 def anx1(age, rmt, dep, stress, anx):
     x_in = np.array([[rmt, age, dep, stress, anx]])
@@ -51,20 +47,17 @@ def anx1(age, rmt, dep, stress, anx):
     processed_pred = int(pred[0][0])
     return processed_pred
 
-
 def anx2(age, rmt, dep, stress, anx, anx1):
     x_in = np.array([[rmt, age, dep, stress, anx, anx1]])
     pred = loaded_modela2.predict(x_in)
     processed_pred = int(pred[0][0])
     return processed_pred
 
-
 def totalscore(age, rmt, dep, stress, anx, dep1, stress1, anx1):
     x_in = np.array([[age, rmt, dep, stress, anx, dep1, stress1, anx1]])
     pred = loaded_modelts.predict(x_in)
     processed_pred = int(pred[0][0])
     return processed_pred
-
 
 def pred(age, rmt, dep, stress, anx):
     predicted_depression_1 = depression1(age, rmt, dep, stress, anx)
@@ -93,13 +86,10 @@ def pred(age, rmt, dep, stress, anx):
         ans['finals'] = predicted_stress_2
         ans['finala'] = predicted_anxiety_2
         ans['no_of_session'] = no_of_sessions
-        # ans['MADRS'] = abs(totalscore(age, rmt, dep, stress, anx,
-        #                    predicted_depression_2, predicted_stress_2, predicted_anxiety_2))
-        ans['MADRS'] = random.randrange(10, 19)
-    else:
-        # ans['MADRS'] = abs(totalscore(age, rmt, dep, stress, anx,
-        #                    predicted_depression_1, predicted_stress_1, predicted_anxiety_1))
-        ans['MADRS'] = random.randrange(10, 19)
+    x_in = [[rmt,age,dep,stress, anx,ans['finald'],ans['finals'],ans['finala']]]
+    model = load_model('Total_Score_1.h5')
+    pred = model.predict(x_in)
+    ans['MADRS'] = int(pred[0][0])
     return ans
 
 
