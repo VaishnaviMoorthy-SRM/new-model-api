@@ -26,7 +26,7 @@ def depression2(age, rmt, dep, stress, anx, dep1):
     x_in = np.array([[rmt, age, dep, stress, anx, dep1]])
     pred = loaded_modeld2.predict(x_in)
     processed_pred = int(pred[0][0])
-    return processed_predsk 
+    return processed_pred 
 
 def stress1(age, rmt, dep, stress, anx):
     x_in = np.array([[rmt, age, dep, stress, anx]])
